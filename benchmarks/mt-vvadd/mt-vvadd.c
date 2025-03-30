@@ -18,7 +18,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "../../benchmarks/pmu_defs.h"
+#include "pmu_defs.h"
 #define BARE
 
 

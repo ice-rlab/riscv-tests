@@ -18,7 +18,7 @@
 // Input/Reference Data
 
 #include "dataset1.h"
-#include "../../benchmarks/pmu_defs.h"
+#include "pmu_defs.h"
 
 
 //--------------------------------------------------------------------------

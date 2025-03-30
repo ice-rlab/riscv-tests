@@ -13,7 +13,7 @@
 #include "util.h"
 #include <string.h>
 #include <limits.h>
-#include "../../benchmarks/pmu_defs.h"
+#include "pmu_defs.h"
 //--------------------------------------------------------------------------
 // Input/Reference Data
 

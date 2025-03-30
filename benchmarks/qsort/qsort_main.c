@@ -13,7 +13,7 @@
 #include "util.h"
 #include <string.h>
 #include <assert.h>
-#include "../../benchmarks/pmu_defs.h"
+#include "pmu_defs.h"
 
 // The INSERTION_THRESHOLD is the size of the subarray when the
 // algorithm switches to using an insertion sort instead of

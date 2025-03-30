@@ -12,7 +12,7 @@
 #include "util.h"
 
 #include "multiply.h"
-#include "../../benchmarks/pmu_defs.h"
+#include "pmu_defs.h"
 #define PMU
 
 //--------------------------------------------------------------------------

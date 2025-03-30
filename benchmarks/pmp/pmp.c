@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "util.h"
-#include "../../benchmarks/pmu_defs.h"
+#include "pmu_defs.h"
 
 volatile int trap_expected;
 volatile int granule;
