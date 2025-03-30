@@ -33,24 +33,24 @@ int main( int argc, char* argv[] )
   median( DATA_SIZE, input_data, results_data );
 #endif
 
-// #ifdef PMU
-//   start_counters();
-// #endif
 
   // Do the filter
   
 #ifndef PMU 
 setStats(1);
 #endif
+#ifdef PMU
+  start_counters();
+#endif
   median( DATA_SIZE, input_data, results_data );
+#ifdef PMU
+  end_counters();
+#endif
   
 #ifndef PMU 
 setStats(0);
 #endif
 
-// #ifdef PMU
-//   end_counters();
-// #endif
   // Check the results
   return verify( DATA_SIZE, results_data, verify_data );
 }

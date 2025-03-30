@@ -36,14 +36,7 @@ bmarks = \
 	mm \
 	dhrystone \
 	spmv \
-	mt-vvadd \
-	mt-matmul \
-	mt-memcpy \
 	pmp \
-	vec-memcpy \
-	vec-daxpy \
-	vec-sgemm \
-	vec-strcmp \
 
 #--------------------------------------------------------------------
 # Build rules
@@ -52,15 +45,27 @@ bmarks = \
 RISCV_PREFIX ?= riscv$(XLEN)-unknown-elf-
 RISCV_GCC ?= $(RISCV_PREFIX)gcc
 # RISCV_GCC_OPTS ?= -DPREALLOCATE=1 -mcmodel=medany -static -std=gnu99 -O2 -ffast-math -fno-common -fno-builtin-printf -fno-tree-loop-distribute-patterns -march=rv$(XLEN)gcv -mabi=$(ABI)
-RISCV_GCC_OPTS ?= -DPREALLOCATE=1 -mcmodel=medany -static -std=gnu99 -fno-common -fno-builtin-printf -fno-tree-loop-distribute-patterns -march=rv$(XLEN)gcv -mabi=$(ABI) $(OPT)
+RISCV_GCC_OPTS ?=  -DPREALLOCATE=1 -mcmodel=medany -static -std=gnu99 -fno-common -fno-builtin-printf -fno-tree-loop-distribute-patterns -march=rv$(XLEN)gcv -mabi=$(ABI) $(OPT)
 RISCV_LINK ?= $(RISCV_GCC) -T $(src_dir)/common/test.ld $(incs)
 RISCV_LINK_OPTS ?= -static -nostdlib -nostartfiles -lm -lgcc -T $(src_dir)/common/test.ld
 RISCV_OBJDUMP ?= $(RISCV_PREFIX)objdump --disassemble-all --disassemble-zeroes --section=.text --section=.text.startup --section=.text.init --section=.data
 RISCV_SIM ?= spike --isa=rv$(XLEN)gcv
 
-ifdef PMU
+ifeq ($(PMU),1)
 	RISCV_GCC_OPTS += -D=PMU
 endif
+
+ifdef COREWIDTH
+	RISCV_GCC_OPTS += -DCOREWIDTH=$(COREWIDTH)
+endif
+ifeq ($(CORE),ROCKET)
+	RISCV_GCC_OPTS += -D=ROCKET
+endif
+ifeq ($(CORE),BOOM)
+	RISCV_GCC_OPTS += -D=BOOM
+endif
+
+RISCV_GCC_OPTS += $(OPT)
 
 
 incs  += -I$(src_dir)/../env -I$(src_dir)/common $(addprefix -I$(src_dir)/, $(bmarks))

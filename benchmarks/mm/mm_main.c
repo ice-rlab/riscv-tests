@@ -12,10 +12,8 @@
 
 void thread_entry(int cid, int nc)
 {
-#ifdef PMU
-  start_counters();
-#endif
-  const int R = 8;
+
+  const int R = 2;
   int m, n, p;
   uint64_t s = 0xdeadbeefU;
   
@@ -34,17 +32,23 @@ void thread_entry(int cid, int nc)
     for (size_t j = 0; j < n; j++)
       b[i*n+j] = (t)(s = lfsr(s));
   memset(c, 0, m*n*sizeof(c[0]));
-
+  #ifdef PMU
+    start_counters();
+  #endif
   size_t instret, cycles;
   for (int i = 0; i < R; i++)
   {
     instret = -read_csr(minstret);
     cycles = -read_csr(mcycle);
+
     mm(m, n, p, a, p, b, n, c, n);
+
     instret += read_csr(minstret);
     cycles += read_csr(mcycle);
   }
-
+  #ifdef PMU
+  end_counters();
+  #endif
   asm volatile("fence");
 
   printf("C%d: reg block %dx%dx%d, cache block %dx%dx%d\n",
@@ -73,8 +77,6 @@ void thread_entry(int cid, int nc)
 #endif
 
   barrier(nc);
-  #ifdef PMU
-  end_counters();
-#endif
+
   exit(0);
 }

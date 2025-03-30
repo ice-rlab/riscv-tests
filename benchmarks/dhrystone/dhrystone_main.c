@@ -62,9 +62,7 @@ int main (int argc, char** argv)
   /* Main and Proc_0 in the Ada version             */
 {
 
-#ifdef PMU
-  start_counters();
-#endif
+
 
         One_Fifty       Int_1_Loc;
   REG   One_Fifty       Int_2_Loc;
@@ -123,6 +121,11 @@ int main (int argc, char** argv)
 #ifndef PMU 
 setStats(1);
 #endif
+#ifdef PMU
+start_counters();
+#endif
+
+
     Start_Timer();
 
     for (Run_Index = 1; Run_Index <= Number_Of_Runs; ++Run_Index)
@@ -175,11 +178,16 @@ setStats(1);
     /* Stop timer */
     /**************/
 
+#ifdef PMU
+  end_counters();
+#endif
     Stop_Timer();
     
 #ifndef PMU 
 setStats(0);
 #endif
+
+
 
     User_Time = End_Time - Begin_Time;
 
@@ -192,9 +200,6 @@ setStats(0);
   }
 
 
-#ifdef PMU
-  end_counters();
-#endif
 
   debug_printf("Final values of the variables used in the benchmark:\n");
   debug_printf("\n");
