@@ -18,7 +18,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#ifdef PMU
 #include "pmu_defs.h"
+#endif
 #define BARE
 
 

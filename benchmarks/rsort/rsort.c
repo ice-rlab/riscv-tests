@@ -13,7 +13,9 @@
 #include "util.h"
 #include <string.h>
 #include <limits.h>
+#ifdef PMU
 #include "pmu_defs.h"
+#endif
 //--------------------------------------------------------------------------
 // Input/Reference Data
 

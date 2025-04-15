@@ -12,8 +12,9 @@
 #include "util.h"
 
 #include "multiply.h"
+#ifdef PMU
 #include "pmu_defs.h"
-#define PMU
+#endif
 
 //--------------------------------------------------------------------------
 // Input/Reference Data

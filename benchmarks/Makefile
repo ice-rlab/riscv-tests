@@ -58,10 +58,10 @@ endif
 ifdef COREWIDTH
 	RISCV_GCC_OPTS += -DCOREWIDTH=$(COREWIDTH)
 endif
-ifeq ($(CORE),ROCKET)
+ifeq ($(CORE),Rocket)
 	RISCV_GCC_OPTS += -D=ROCKET
 endif
-ifeq ($(CORE),BOOM)
+ifeq ($(CORE),Boom)
 	RISCV_GCC_OPTS += -D=BOOM
 endif
 

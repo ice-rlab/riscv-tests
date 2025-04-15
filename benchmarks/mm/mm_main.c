@@ -5,7 +5,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "util.h"
+#ifdef PMU
 #include "pmu_defs.h"
+#endif
 // #define BARE
 
 #pragma GCC optimize ("unroll-loops")

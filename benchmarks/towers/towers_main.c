@@ -16,7 +16,9 @@
 // algorithm to sovel the puzzle.
 
 #include "util.h"
+#ifdef PMU
 #include "pmu_defs.h"
+#endif
 
 // This is the number of discs in the puzzle.
 

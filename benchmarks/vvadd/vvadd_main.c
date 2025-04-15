@@ -10,7 +10,9 @@
 // to a file named dataset1.h.
  
 #include "util.h"
+#ifdef PMU
 #include "pmu_defs.h"
+#endif
 
 //--------------------------------------------------------------------------
 // Input/Reference Data

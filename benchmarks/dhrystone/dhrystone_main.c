@@ -10,7 +10,9 @@
 #pragma GCC optimize ("no-inline")
 
 #include "dhrystone.h"
+#ifdef PMU
 #include "pmu_defs.h"
+#endif
 
 #define BARE
 

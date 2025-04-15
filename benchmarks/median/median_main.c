@@ -18,7 +18,9 @@
 // Input/Reference Data
 
 #include "dataset1.h"
+#ifdef PMU
 #include "pmu_defs.h"
+#endif
 
 
 //--------------------------------------------------------------------------
